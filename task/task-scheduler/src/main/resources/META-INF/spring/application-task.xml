@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
+
+
+    <context:component-scan base-package="org.cheng.meepo.task"/>
+
+
+    <bean id="configBean" class="org.cheng.meepo.util.PropertiesParse">
+        <property name="locations">
+            <list>
+                <value>classpath:dubbo.properties</value>
+                <value>classpath:rocketmq.properties</value>
+                <!--<value>classpath:redis.properties</value>-->
+                <value>classpath:mongodb.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--任务调度入口-->
+    <bean id="scheduleManager" class="org.cheng.meepo.task.scheduler.ScheduleMain"
+          init-method="init">
+        <property name="zkConfig">
+            <map>
+                <entry key="zkConnectString" value="${dubbo.registry.address}"/>
+                <entry key="rootPath" value="/meepo/taskservice"/>
+                <entry key="zkSessionTimeout" value="60000"/>
+                <!--<entry key="userName" value="ScheduleAdmin" />-->
+                <!--<entry key="password" value="password" />-->
+                <entry key="autoRegisterTask" value="true"/>
+            </map>
+        </property>
+    </bean>
+
+    <!--配置任务参数存储方式Redis-->
+    <!--<bean id="taskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>-->
+
+
+    <!--配置任务参数存储方式MongoDB-->
+    <mongo:mongo host="${mongo.host}" port="${mongo.port}">
+    </mongo:mongo>
+    <bean id="taskMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo" />
+        <constructor-arg value="${mongo.db.name}" />
+    </bean>
+    <bean id="taskParamStore" class="org.cheng.meepo.task.storage.MongodbTaskParamStore"/>
+
+
+</beans>

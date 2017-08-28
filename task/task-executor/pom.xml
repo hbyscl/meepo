@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>org.cheng</groupId>
+        <artifactId>task</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>task-executor</artifactId>
+    <description>任务执行方，与Dubbo服务配合使用</description>
+    <packaging>jar</packaging>
+    <dependencies>
+        <dependency>
+            <groupId>org.cheng</groupId>
+            <artifactId>dubbo-api</artifactId>
+            <version>${version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cheng</groupId>
+            <artifactId>task-storage-redis</artifactId>
+            <version>${version}</version>
+        </dependency>
+    </dependencies>
+
+
+</project>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ - Copyright 1999-2011 Alibaba Group.
+ -  
+ - Licensed under the Apache License, Version 2.0 (the "License");
+ - you may not use this file except in compliance with the License.
+ - You may obtain a copy of the License at
+ -  
+ -      http://www.apache.org/licenses/LICENSE-2.0
+ -  
+ - Unless required by applicable law or agreed to in writing, software
+ - distributed under the License is distributed on an "AS IS" BASIS,
+ - WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ - See the License for the specific language governing permissions and
+ - limitations under the License.
+-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:component-scan base-package="org.cheng.meepo"/>
+
+
+	<bean id="configBean" class="org.cheng.meepo.util.PropertiesParse">
+		<property name="locations">
+			<list>
+				<value>classpath:redis.properties</value>
+				<value>classpath:dubbo.properties</value>
+				<value>classpath:rocketmq.properties</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<bean id="redisTaskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>
+	<bean id="foundProviderService" class="org.cheng.meepo.task.executor.dubbo.FoundProviderXMLService"/>
+
+	<!--<dubbo:application name="${dubbo.application.name}" />-->
+
+	<!--&lt;!&ndash; 使用zookeeper广播注册中心暴露服务地址 &ndash;&gt;-->
+	<!--<dubbo:registry address="${dubbo.registry.address}" />-->
+
+	<!--&lt;!&ndash; <dubbo:registry protocol="${dubbo.registry.protocol}" address="${dubbo.registry.address}"/> &ndash;&gt;-->
+
+	<!--&lt;!&ndash; 用dubbo协议在指定端口暴露服务 &ndash;&gt;-->
+	<!--<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />-->
+	<dubbo:service interface="org.cheng.meepo.service.TaskTestServiceOne" ref="taskTestServiceOneImpl"/>
+	<dubbo:service interface="org.cheng.meepo.service.TaskTestServiceTwo" ref="taskTestServiceTwoImpl" />
+
+</beans>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/data/mongo
+        http://www.springframework.org/schema/data/mongo/spring-mongo.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+
+    <bean id="configBean" class="org.cheng.meepo.util.PropertiesParse">
+        <property name="locations">
+            <list>
+                <value>classpath:redis.properties.bak</value>
+                <value>classpath:dubbo.properties.bak</value>
+                <value>classpath:rocketmq.properties.bak</value>
+                <value>classpath:mongodb.properties.bak</value>
+            </list>
+        </property>
+    </bean>
+
+    <!--配置REDIS数据存储方式-->
+    <!--<bean id="redisTaskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>-->
+
+    <!--配置MongoDB数据存储方式-->
+    <mongo:mongo host="${mongo.host}" port="${mongo.port}">
+    </mongo:mongo>
+    <bean id="taskMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+        <constructor-arg ref="mongo" />
+        <constructor-arg value="${mongo.db.name}" />
+    </bean>
+    <bean id="taskParamStore" class="org.cheng.meepo.task.storage.MongodbTaskParamStore"/>
+
+    <!--配置通过读取Dubbo Provider XML配置文件方式发现本地Dubbo服务-->
+    <bean id="foundProviderService" class="org.cheng.meepo.task.executor.dubbo.FoundProviderXMLService"/>
+
+    <dubbo:reference id="taskService" interface="org.cheng.meepo.task.service.TaskService" />
+</beans>

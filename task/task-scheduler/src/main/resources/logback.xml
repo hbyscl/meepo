@@ -1,0 +1,105 @@
+<configuration>
+
+    <!--对应到conf目录中的文件-->
+    <property resource="./logback.properties"/>
+
+    <contextName>${APP_NAME}</contextName>
+
+    <!--控制台输出-->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${APP_NAME}][%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--默认INFO日志滚动输出-->
+    <appender name="INFO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_PATH}/info.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${APP_NAME}][%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--默认ERROR日志滚动输出-->
+    <appender name="ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_FILE_PATH}/error.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${APP_NAME}][%thread] %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--根据名称筛选的INFO日志滚动输出-->
+    <appender name="SIFT-INFO" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator class="org.cheng.meepo.util.LoggerNameDiscriminator"/>
+        <sift>
+            <appender name="${loggerName}-INFO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <append>true</append>
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>INFO</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_FILE_PATH}/${loggerName}-info.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxHistory>30</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${APP_NAME}][%thread] %logger{36} - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <!--根据名称筛选的ERROR日志滚动输出-->
+    <appender name="SIFT-EEROR" class="ch.qos.logback.classic.sift.SiftingAppender">
+        <discriminator class="org.cheng.meepo.util.LoggerNameDiscriminator"/>
+        <sift>
+            <appender name="${loggerName}-ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                <append>true</append>
+                <filter class="ch.qos.logback.classic.filter.LevelFilter">
+                    <level>ERROR</level>
+                    <onMatch>ACCEPT</onMatch>
+                    <onMismatch>DENY</onMismatch>
+                </filter>
+                <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                    <fileNamePattern>${LOG_FILE_PATH}/${loggerName}-error.%d{yyyy-MM-dd}.log</fileNamePattern>
+                    <maxHistory>30</maxHistory>
+                </rollingPolicy>
+                <encoder>
+                    <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [${APP_NAME}][%thread] %logger{36} - %msg%n</pattern>
+                </encoder>
+            </appender>
+        </sift>
+    </appender>
+
+    <!--默认日志设置-->
+    <root level="INFO">
+        <appender-ref ref="SIFT-INFO"/>
+        <appender-ref ref="SIFT-EEROR"/>
+    </root>
+
+    <!--任务模块代码日志输出,写文件同时输出控制台-->
+    <logger name="org.cheng.meepo.task" level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </logger>
+
+    <!--Dubbo日志输出-->
+    <logger name="com.alibaba.dubbo" level="INFO"/>
+
+</configuration>
