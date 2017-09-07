@@ -2,6 +2,8 @@
 <h3>meepo：</h3>
 来自于Dota次元的英雄，它最多拥有5个分身，可以同时执行（Gank）多项任务<br/>
 
+![image](https://github.com/hbyscl/meepo/blob/master/design/%E6%9E%B6%E6%9E%84.png)
+
 <h3>模块划分：</h3>
 meepo<br/>
 &nbsp;&nbsp;&nbsp;&nbsp;dubbo-api--------------API定义及必须的公共工具类<br/>
