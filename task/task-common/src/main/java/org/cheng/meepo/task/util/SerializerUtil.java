@@ -1,4 +1,4 @@
-package org.cheng.meepo.util;
+package org.cheng.meepo.task.util;
 
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;

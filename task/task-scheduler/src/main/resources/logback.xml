@@ -46,7 +46,7 @@
 
     <!--根据名称筛选的INFO日志滚动输出-->
     <appender name="SIFT-INFO" class="ch.qos.logback.classic.sift.SiftingAppender">
-        <discriminator class="org.cheng.meepo.util.LoggerNameDiscriminator"/>
+        <discriminator class="org.cheng.meepo.task.util.LoggerNameDiscriminator"/>
         <sift>
             <appender name="${loggerName}-INFO-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
                 <append>true</append>
@@ -68,7 +68,7 @@
 
     <!--根据名称筛选的ERROR日志滚动输出-->
     <appender name="SIFT-EEROR" class="ch.qos.logback.classic.sift.SiftingAppender">
-        <discriminator class="org.cheng.meepo.util.LoggerNameDiscriminator"/>
+        <discriminator class="org.cheng.meepo.task.util.LoggerNameDiscriminator"/>
         <sift>
             <appender name="${loggerName}-ERROR-FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
                 <append>true</append>

@@ -1,7 +1,7 @@
 package org.cheng.meepo.task.scheduler.mq;
 
 import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
-import org.cheng.meepo.util.PropertiesParse;
+import org.cheng.meepo.task.util.PropertiesParse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -9,7 +9,7 @@ import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.dto.TaskStatusDTO;
 import org.cheng.meepo.task.scheduler.monitor.CallbackThreadPool;
 import org.cheng.meepo.task.scheduler.monitor.TaskStatusChangeCallback;
-import org.cheng.meepo.util.SerializerUtil;
+import org.cheng.meepo.task.util.SerializerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

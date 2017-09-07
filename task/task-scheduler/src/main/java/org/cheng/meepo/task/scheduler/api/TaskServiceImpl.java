@@ -1,7 +1,7 @@
 package org.cheng.meepo.task.scheduler.api;
 
-import org.cheng.meepo.exception.TaskDataException;
-import org.cheng.meepo.exception.TaskServiceException;
+import org.cheng.meepo.task.exception.TaskDataException;
+import org.cheng.meepo.task.exception.TaskServiceException;
 import org.cheng.meepo.task.constant.TaskStatus;
 import org.cheng.meepo.task.constant.TaskType;
 import org.cheng.meepo.task.dto.ServiceInvokeParam;

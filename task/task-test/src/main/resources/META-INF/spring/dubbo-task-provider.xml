@@ -25,7 +25,7 @@
     <context:component-scan base-package="org.cheng.meepo"/>
 
     <!--载入配置文件，可供程序内读取-->
-    <bean id="configBean" class="org.cheng.meepo.util.PropertiesParse">
+    <bean id="configBean" class="org.cheng.meepo.task.util.PropertiesParse">
         <property name="locations">
             <list>
                 <value>classpath:redis.properties</value>

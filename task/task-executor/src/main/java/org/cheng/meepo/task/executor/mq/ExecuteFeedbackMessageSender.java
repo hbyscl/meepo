@@ -5,8 +5,8 @@ import com.alibaba.rocketmq.client.producer.DefaultMQProducer;
 import com.alibaba.rocketmq.common.message.Message;
 import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.dto.TaskStatusDTO;
-import org.cheng.meepo.util.PropertiesParse;
-import org.cheng.meepo.util.SerializerUtil;
+import org.cheng.meepo.task.util.PropertiesParse;
+import org.cheng.meepo.task.util.SerializerUtil;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;

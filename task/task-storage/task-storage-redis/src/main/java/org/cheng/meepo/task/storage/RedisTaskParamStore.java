@@ -1,10 +1,10 @@
 package org.cheng.meepo.task.storage;
 
-import org.cheng.meepo.exception.TaskDataException;
+import org.cheng.meepo.task.exception.TaskDataException;
 import org.cheng.meepo.task.constant.TaskStatus;
 import org.cheng.meepo.task.dto.TaskContext;
-import org.cheng.meepo.util.PropertiesParse;
-import org.cheng.meepo.util.SerializerUtil;
+import org.cheng.meepo.task.util.PropertiesParse;
+import org.cheng.meepo.task.util.SerializerUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import redis.clients.jedis.Jedis;

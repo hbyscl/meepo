@@ -4,7 +4,7 @@ import com.alibaba.rocketmq.client.consumer.DefaultMQPushConsumer;
 import com.alibaba.rocketmq.client.consumer.listener.MessageListenerOrderly;
 import com.alibaba.rocketmq.common.consumer.ConsumeFromWhere;
 import com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel;
-import org.cheng.meepo.util.PropertiesParse;
+import org.cheng.meepo.task.util.PropertiesParse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

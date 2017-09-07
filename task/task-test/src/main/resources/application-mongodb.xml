@@ -11,7 +11,7 @@
         http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
 
-    <bean id="configBean" class="org.cheng.meepo.util.PropertiesParse">
+    <bean id="configBean" class="org.cheng.meepo.task.util.PropertiesParse">
         <property name="locations">
             <list>
                 <value>classpath:mongodb.properties</value>

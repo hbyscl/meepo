@@ -1,4 +1,4 @@
-package org.cheng.meepo.util;
+package org.cheng.meepo.task.util;
 
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.ConfigurableListableBeanFactory;

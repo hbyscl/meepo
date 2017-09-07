@@ -10,7 +10,7 @@ import com.alibaba.rocketmq.common.protocol.heartbeat.MessageModel;
 import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.executor.TaskExecuteInvoker;
 import org.cheng.meepo.task.executor.dubbo.IFoundProviderService;
-import org.cheng.meepo.util.PropertiesParse;
+import org.cheng.meepo.task.util.PropertiesParse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

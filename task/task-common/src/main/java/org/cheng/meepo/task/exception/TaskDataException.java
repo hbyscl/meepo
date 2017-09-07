@@ -1,4 +1,4 @@
-package org.cheng.meepo.exception;
+package org.cheng.meepo.task.exception;
 
 /**
  * Created by ChengLi on 2016/6/22.

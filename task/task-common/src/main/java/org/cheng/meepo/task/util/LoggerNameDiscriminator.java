@@ -1,4 +1,4 @@
-package org.cheng.meepo.util;
+package org.cheng.meepo.task.util;
 
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;

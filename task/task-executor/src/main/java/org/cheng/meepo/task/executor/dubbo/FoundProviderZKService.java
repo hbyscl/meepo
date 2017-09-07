@@ -1,6 +1,6 @@
 package org.cheng.meepo.task.executor.dubbo;
 
-import org.cheng.meepo.util.PropertiesParse;
+import org.cheng.meepo.task.util.PropertiesParse;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;

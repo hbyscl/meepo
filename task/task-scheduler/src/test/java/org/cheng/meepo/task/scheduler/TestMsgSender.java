@@ -6,7 +6,7 @@ import com.alibaba.rocketmq.common.message.Message;
 import org.cheng.meepo.task.constant.TaskStatus;
 import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.dto.TaskStatusDTO;
-import org.cheng.meepo.util.SerializerUtil;
+import org.cheng.meepo.task.util.SerializerUtil;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;

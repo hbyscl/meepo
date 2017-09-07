@@ -11,7 +11,7 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 
-    <bean id="configBean" class="org.cheng.meepo.util.PropertiesParse">
+    <bean id="configBean" class="org.cheng.meepo.task.util.PropertiesParse">
         <property name="locations">
             <list>
                 <value>classpath:redis.properties.bak</value>

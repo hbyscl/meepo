@@ -1,6 +1,6 @@
 package org.cheng.meepo.task.storage;
 
-import org.cheng.meepo.exception.TaskDataException;
+import org.cheng.meepo.task.exception.TaskDataException;
 import org.cheng.meepo.task.constant.TaskStatus;
 import org.cheng.meepo.task.dto.TaskContext;
 import org.springframework.beans.factory.annotation.Autowired;
