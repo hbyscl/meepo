@@ -40,9 +40,12 @@ TaskScheduler：负责任务信息组织、任务调度。 TaskExecutor：运行
 
 2.4.1	TaskScheduler
 
-API:提供Dubbo服务给其它模块调用 TaskManager：向ZK（Redis）中添加任务节点数据，不直接参入调度逻辑 节点名为：ip+uuid+ZK序列号 节点内容为：心跳参数 ScheduleManager：调度核心模块，通过定时向ZK发送心跳数据实现集群功能。	根据任务节点数据创建本地SpringTask任务 任务节点名为：本地消息发送Bean+方法名+任务类型+任务ID 如：sendTaskMsg#senMsg#PLAN#EB37B0 内容为：任务调度信息，执行次数，执行服务节点等信息 SpringTask：本地任务触发后向MQ发送服务执行消息， 发送的任务消息话题为任务目标接口名如： （org.cheng.meepo.task.service.TaskService） 内容为TaskId 2.4.2	TaskExecutor
-
-Listener：向MQ中监听本容器提供的服务消息 如：当前容器只启动了TaskService服务，则只会收到Topic为	TaskService的消息 Invoker：通过监听拿到的TaskID，向Redis中查询任务执行情况，实现初步幂	等性判断。从Redis中获取到服务执行参数以后，泛化调用指定服务。	将调用结果（成功与否）发送至MQ，内容为执行的TaskId。
+API:提供Dubbo服务给其它模块调用 
+TaskManager：向ZK（Redis）中添加任务节点数据，不直接参入调度逻辑 节点名为：ip+uuid+ZK序列号 节点内容为：心跳参数 
+ScheduleManager：调度核心模块，通过定时向ZK发送心跳数据实现集群功能。	根据任务节点数据创建本地SpringTask任务 任务节点名为：本地消息发送Bean+方法名+任务类型+任务ID 如：sendTaskMsg#senMsg#PLAN#EB37B0 内容为：任务调度信息，执行次数，执行服务节点等信息 
+SpringTask：本地任务触发后向MQ发送服务执行消息， 发送的任务消息话题为任务目标接口名如： （org.cheng.meepo.task.service.TaskService） 内容为TaskId 2.4.2	TaskExecutor
+Listener：向MQ中监听本容器提供的服务消息 如：当前容器只启动了TaskService服务，则只会收到Topic为	TaskService的消息 
+Invoker：通过监听拿到的TaskID，向Redis中查询任务执行情况，实现初步幂	等性判断。从Redis中获取到服务执行参数以后，泛化调用指定服务。	将调用结果（成功与否）发送至MQ，内容为执行的TaskId。
 
 服务API提供
 org.cheng.meepo.task.service.TaskService 以Dubbo方式提供能力接口供其它模块调用
