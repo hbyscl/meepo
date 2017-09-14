@@ -31,23 +31,23 @@
                 <value>classpath:redis.properties</value>
                 <value>classpath:dubbo.properties</value>
                 <value>classpath:rocketmq.properties</value>
-                <value>classpath:mongodb.properties</value>
+                <!--<value>classpath:mongodb.properties</value>-->
             </list>
         </property>
     </bean>
 
 
     <!--配置REDIS数据存储方式-->
-    <!--<bean id="redisTaskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>-->
+    <bean id="redisTaskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>
 
-    <!--配置MongoDB数据存储方式-->
-    <mongo:mongo host="${mongo.host}" port="${mongo.port}">
-    </mongo:mongo>
-    <bean id="taskMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg ref="mongo" />
-        <constructor-arg value="${mongo.db.name}" />
-    </bean>
-    <bean id="taskParamStore" class="org.cheng.meepo.task.storage.MongodbTaskParamStore"/>
+    <!--&lt;!&ndash;配置MongoDB数据存储方式&ndash;&gt;-->
+    <!--<mongo:mongo host="${mongo.host}" port="${mongo.port}">-->
+    <!--</mongo:mongo>-->
+    <!--<bean id="taskMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">-->
+        <!--<constructor-arg ref="mongo" />-->
+        <!--<constructor-arg value="${mongo.db.name}" />-->
+    <!--</bean>-->
+    <!--<bean id="taskParamStore" class="org.cheng.meepo.task.storage.MongodbTaskParamStore"/>-->
 
     <!--配置通过读取Dubbo Provider XML配置文件方式发现本地Dubbo服务-->
     <bean id="foundProviderService" class="org.cheng.meepo.task.executor.dubbo.FoundProviderXMLService"/>

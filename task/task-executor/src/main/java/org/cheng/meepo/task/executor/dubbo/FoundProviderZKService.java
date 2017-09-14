@@ -4,6 +4,8 @@ import org.cheng.meepo.task.util.PropertiesParse;
 import org.apache.zookeeper.WatchedEvent;
 import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooKeeper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -23,10 +25,12 @@ import java.util.regex.Pattern;
  */
 public class FoundProviderZKService implements IFoundProviderService {
 
+    private static Logger log = LoggerFactory.getLogger(FoundProviderZKService.class);
+
     @Override
     public List<String> list() {
         try {
-            System.out.println("FoundProviderService.list获取本地Dubbo服务列表");
+            log.info("FoundProviderService.list获取本地Dubbo服务列表");
             List<String> localIPList = getLocalIPList();
             final CountDownLatch connectionLatch = new CountDownLatch(1);
             ZooKeeper zk = new ZooKeeper(PropertiesParse.getProperty("dubbo.registry.address"), 60000, new Watcher() {
@@ -34,9 +38,9 @@ public class FoundProviderZKService implements IFoundProviderService {
                 public void process(WatchedEvent event) {
                     if (event.getState() == Event.KeeperState.SyncConnected) {
                         connectionLatch.countDown();
-                        System.out.println("连接Zookeeper成功");
+                        log.info("连接Zookeeper成功");
                     } else if (event.getState() == Event.KeeperState.Expired) {
-                        System.out.println("会话超时，连接Zookeeper失败");
+                        log.info("会话超时，连接Zookeeper失败");
                     }
                 }
             });

@@ -1,9 +1,3 @@
-/**   
- * Copyright (c) 2016, WuHan Hongtoo Technology Co., Ltd. All rights reserved. 
- * 武汉宏途科技有限公司 版权所有 
- * 
- * 审核人： 
- */
 package org.cheng.meepo.service;
 
 import ch.qos.logback.classic.Logger;
@@ -12,10 +6,7 @@ import ch.qos.logback.classic.spi.ILoggingEvent;
 import ch.qos.logback.core.sift.AbstractDiscriminator;
 
 /** 
- * @Description logger名称识别器 
- * @author zhengyf
- * @date 2016年8月3日 上午14:20
- * @version V1.0.0
+ *  logger名称识别器
  */
 public class LoggerNameDiscriminator extends AbstractDiscriminator<ILoggingEvent> {
 

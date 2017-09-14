@@ -1,5 +1,7 @@
 package org.cheng.meepo.task.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -9,6 +11,8 @@ import java.io.*;
  * Created by ChengLi on 2016/6/19.
  */
 public class SerializerUtil {
+    private static Logger log = LoggerFactory.getLogger(SerializerUtil.class);
+
     public static Object byte2object(byte[] bytes) {
         Object obj = null;
         try {
@@ -20,8 +24,7 @@ public class SerializerUtil {
             bi.close();
             oi.close();
         } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
-            e.printStackTrace();
+            log.error("translation",e);
         }
         return obj;
     }
@@ -39,8 +42,7 @@ public class SerializerUtil {
             bo.close();
             oo.close();
         } catch (Exception e) {
-            System.out.println("translation" + e.getMessage());
-            e.printStackTrace();
+            log.error("translation",e);
         }
         return bytes;
     }
@@ -53,7 +55,7 @@ public class SerializerUtil {
         try {
             return byte2object(new BASE64Decoder().decodeBuffer(base64));
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("translation",e);
         }
         return null;
     }

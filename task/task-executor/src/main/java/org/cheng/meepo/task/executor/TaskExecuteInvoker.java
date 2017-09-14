@@ -33,7 +33,7 @@ public class TaskExecuteInvoker {
     private ExecuteFeedbackMessageSender sender;
 
     public TaskExecuteInvoker() {
-        System.out.println("TaskExecuteCallback.TaskExecuteCallbackImpl初始化");
+        log.info("TaskExecuteCallback.TaskExecuteCallbackImpl初始化");
     }
 
     /**

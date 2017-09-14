@@ -7,6 +7,8 @@ import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.dto.TaskStatusDTO;
 import org.cheng.meepo.task.util.PropertiesParse;
 import org.cheng.meepo.task.util.SerializerUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
@@ -20,6 +22,8 @@ import java.net.UnknownHostException;
 @Service
 public class ExecuteFeedbackMessageSender {
 
+    private static Logger log = LoggerFactory.getLogger(ExecuteFeedbackMessageSender.class);
+
     private DefaultMQProducer defaultMQProducer;
 
     public ExecuteFeedbackMessageSender() {
@@ -31,7 +35,7 @@ public class ExecuteFeedbackMessageSender {
      */
     private void initProducer() {
         try {
-            System.out.println("TaskExecuteFeedbackSender.initProducer");
+            log.info("TaskExecuteFeedbackSender.initProducer");
             defaultMQProducer = new DefaultMQProducer("TaskExecuteFeedbackSender");
             defaultMQProducer.setNamesrvAddr(PropertiesParse.getProperty("rocketmq.namesrvAddr"));
             defaultMQProducer.setInstanceName("TaskExecuteFeedbackSender" +
@@ -56,7 +60,7 @@ public class ExecuteFeedbackMessageSender {
             defaultMQProducer.send(message);
         } catch (Exception e) {
             // TODO: 2016/6/19 LOG
-            e.printStackTrace();
+            log.error("发送任务执行回执出错",e);
         }
 
     }

@@ -11,6 +11,8 @@ import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.executor.TaskExecuteInvoker;
 import org.cheng.meepo.task.executor.dubbo.IFoundProviderService;
 import org.cheng.meepo.task.util.PropertiesParse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,6 +29,9 @@ import java.util.List;
 @Service
 public class ExecuteMessageListener implements MessageListenerOrderly {
 
+    private static Logger log = LoggerFactory.getLogger(ExecuteMessageListener.class);
+
+
     @Autowired
     private TaskExecuteInvoker executeCallback;
 
@@ -39,7 +44,7 @@ public class ExecuteMessageListener implements MessageListenerOrderly {
     @PostConstruct
     private void initConsumer() {
         try {
-            System.out.println("TaskExecuteListener.initConsumer");
+            log.info("TaskExecuteListener.initConsumer");
 
             // 获取本机提供的Dubbo服务列表
             List<String> dubboServiceList = foundProviderService.list();
@@ -61,7 +66,7 @@ public class ExecuteMessageListener implements MessageListenerOrderly {
                 }
                 String subExpression = sub.toString();
                 String topic = TaskConstants.TASK_EXECUTE_MESSAGE_TOPIC;
-                System.out.println("RocketMQ Consumer初始化，添加监听服务："+topic+"="+subExpression);
+                log.info("RocketMQ Consumer初始化，添加监听服务："+topic+"="+subExpression);
 
                 consumer.subscribe(
                         topic,
@@ -72,7 +77,7 @@ public class ExecuteMessageListener implements MessageListenerOrderly {
                 consumer.start();
             }
             else {
-                System.out.println("TaskExecuteListenerImpl取消初始化，没有找到本地提供的Dubbo服务");
+                log.info("TaskExecuteListenerImpl取消初始化，没有找到本地提供的Dubbo服务");
             }
 
 
