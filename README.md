@@ -18,7 +18,9 @@
 
 ## 2  系统模型
 
-系统总体架构为分布式系统，分为任务调度（TaskScheduler）端和任务执行（TaskExecutor）端。 TaskScheduler提供以Dubbo接口的方式提供API给其它模块调用 TaskExecutor嵌入至普通Dubbo服务中，监听到服务调用消息后，调用本地服务。 2.1	架构图解
+系统总体架构为分布式系统，分为任务调度（TaskScheduler）端和任务执行（TaskExecutor）端。 TaskScheduler提供以Dubbo接口的方式提供API给其它模块调用 TaskExecutor嵌入至普通Dubbo服务中，监听到服务调用消息后，调用本地服务。
+
+### 2.1	架构图解
 
 ### 2.2	角色分析
 
