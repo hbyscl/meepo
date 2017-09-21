@@ -1,0 +1,8 @@
+spring:
+  http:
+    encoding:
+      force: true
+  freemarker:
+    cache: false
+server:
+  port: 8080
