@@ -19,8 +19,8 @@
             <list>
                 <value>classpath:dubbo.properties</value>
                 <value>classpath:rocketmq.properties</value>
-                <!--<value>classpath:redis.properties</value>-->
-                <value>classpath:mongodb.properties</value>
+                <value>classpath:redis.properties</value>
+                <!--<value>classpath:mongodb.properties</value>-->
             </list>
         </property>
     </bean>
@@ -41,17 +41,17 @@
     </bean>
 
     <!--配置任务参数存储方式Redis-->
-    <!--<bean id="taskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>-->
+    <bean id="taskParamStore" class="org.cheng.meepo.task.storage.RedisTaskParamStore"/>
 
 
     <!--配置任务参数存储方式MongoDB-->
-    <mongo:mongo host="${mongo.host}" port="${mongo.port}">
-    </mongo:mongo>
-    <bean id="taskMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-        <constructor-arg ref="mongo" />
-        <constructor-arg value="${mongo.db.name}" />
-    </bean>
-    <bean id="taskParamStore" class="org.cheng.meepo.task.storage.MongodbTaskParamStore"/>
+    <!--<mongo:mongo host="${mongo.host}" port="${mongo.port}">-->
+    <!--</mongo:mongo>-->
+    <!--<bean id="taskMongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">-->
+        <!--<constructor-arg ref="mongo" />-->
+        <!--<constructor-arg value="${mongo.db.name}" />-->
+    <!--</bean>-->
+    <!--<bean id="taskParamStore" class="org.cheng.meepo.task.storage.MongodbTaskParamStore"/>-->
 
 
 </beans>

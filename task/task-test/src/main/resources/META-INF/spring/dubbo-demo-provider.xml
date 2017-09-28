@@ -50,5 +50,4 @@
 	<!--<dubbo:protocol name="${dubbo.protocol.name}" port="${dubbo.protocol.port}" />-->
 	<dubbo:service interface="org.cheng.meepo.service.TaskTestServiceOne" ref="taskTestServiceOneImpl"/>
 	<dubbo:service interface="org.cheng.meepo.service.TaskTestServiceTwo" ref="taskTestServiceTwoImpl" />
-
 </beans>

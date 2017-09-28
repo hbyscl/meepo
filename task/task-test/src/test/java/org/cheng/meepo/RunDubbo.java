@@ -5,11 +5,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Created by ChengLi on 2016/6/17.
+ * 根据resources/META-INF/spring下的配置
+ * 启动Schedule
+ * 启动Executor
  */
-public class RunExecutor {
+public class RunDubbo {
 
-    private static Logger log = LoggerFactory.getLogger(RunExecutor.class);
+    private static Logger log = LoggerFactory.getLogger(RunDubbo.class);
 
     public static void main(String[] args) {
         Main.main(args);

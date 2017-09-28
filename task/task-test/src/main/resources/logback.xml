@@ -9,17 +9,17 @@
 	 | 主要的appender包括:SIMPLE_SIFT,APP_SIFT,APP_ERROR_SIFT,ROLLING,ERROR_ROLLING
 	 | 
 	 | 1）SIMPLE_SIFT: 给应用子级别logger用的，因为通常这样的logger是更小粒度的，所以这个appender
-	 | 混合了所有的等级,其日志文件名格式如：iwork_util.com.hongtoo.iwork.log,
-	 | 归档文件如：2016-07-20\com.hongtoo.iwork\com.hongtoo.iwork_0.log.gz
+	 | 混合了所有的等级,其日志文件名格式如：iwork_util.org.cheng.meepo.log,
+	 | 归档文件如：2016-07-20\org.cheng.meepo\org.cheng.meepo_0.log
 	 | 
 	 | 2）APP_SIFT,APP_ERROR_SIFT: 给应用根级logger使用的，前者输出非error级日志,后者输出error级日志，
-	 | 其日志文件名格式如iwork_util.com.hongtoo.iwork.err, iwork_util.com.hongtoo.iwork.log,
-	 | 归档文件如：2016-07-20\com.hongtoo.iwork\com.hongtoo.iwork_0.log.gz,
-	 | 2016-07-20\com.hongtoo.iwork\com.hongtoo.iwork_0.err.gz
+	 | 其日志文件名格式如iwork_util.org.cheng.meepo.err, iwork_util.org.cheng.meepo.log,
+	 | 归档文件如：2016-07-20\org.cheng.meepo\org.cheng.meepo_0.log,
+	 | 2016-07-20\org.cheng.meepo\org.cheng.meepo_0.err.gz
 	 |
 	 | 3）ROLLING和ERROR_ROLLING: 提供给logback root logger使用的，未定义的logger也将由这个logger'接管'
 	 | 其日志文件名格式如: iwork_util.err, iwork_util.log,
-	 | 归档文件如： iwork_util_0.err.gz, iwork_util_0.log.gz
+	 | 归档文件如： iwork_util_0.err.gz, iwork_util_0.log
 	 | -->
 	
 	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
@@ -39,7 +39,7 @@
             <appender name="ROLLING-${loggerName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
 				<file>${LOG_FILE_PATH}/${APP_NAME}.${loggerName}.log</file>
 				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-					<fileNamePattern>${LOG_FILE_PATH}/%d{yyyy-MM-dd}/${loggerName}/${loggerName}_%i.log.gz</fileNamePattern>
+					<fileNamePattern>${LOG_FILE_PATH}/%d{yyyy-MM-dd}/${loggerName}/${loggerName}_%i.log</fileNamePattern>
 					<maxHistory>${MAX_HISTORY}</maxHistory>
 					<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
 						<maxFileSize>${MAX_FILE_SIZE}</maxFileSize> 
@@ -63,7 +63,7 @@
             <appender name="ROLLING-${loggerName}" class="ch.qos.logback.core.rolling.RollingFileAppender">
 				<file>${LOG_FILE_PATH}/${APP_NAME}.${loggerName}.log</file>
 				<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-					<fileNamePattern>${LOG_FILE_PATH}/%d{yyyy-MM-dd}/${loggerName}/${loggerName}_%i.log.gz</fileNamePattern>
+					<fileNamePattern>${LOG_FILE_PATH}/%d{yyyy-MM-dd}/${loggerName}/${loggerName}_%i.log</fileNamePattern>
 					<maxHistory>${MAX_HISTORY}</maxHistory>
 					<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
 						<maxFileSize>${MAX_FILE_SIZE}</maxFileSize> 
@@ -114,7 +114,7 @@
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_FILE_PATH}/${APP_NAME}.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>${LOG_FILE_PATH}/%d{yyyy-MM-dd}/${APP_NAME}_%i.log.gz</fileNamePattern>
+			<fileNamePattern>${LOG_FILE_PATH}/%d{yyyy-MM-dd}/${APP_NAME}_%i.log</fileNamePattern>
 			<maxHistory>${MAX_HISTORY}</maxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP"> 
 				<maxFileSize>${MAX_FILE_SIZE}</maxFileSize> 
@@ -174,16 +174,16 @@
 	 | 建议生产环境下，所有logger的additivity为false，因为通常需要独立定义logger意味着需要独立的日志记录，
 	 | 即独立定义每个logger的appender，通过additivity为false可以减少冗余appender，此外需注意此处是爱工作的根日志记录器 
 	 | -->
-	<logger name="com.hongtoo" additivity="false" level="debug">
-		<appender-ref ref="APP_SIFT" />
-		<appender-ref ref="APP_ERROR_SIFT" />
-	</logger>
+	<!--<logger name="org.cheng.meepo" additivity="false" level="debug">-->
+		<!--<appender-ref ref="APP_SIFT" />-->
+		<!--<appender-ref ref="APP_ERROR_SIFT" />-->
+	<!--</logger>-->
 	<!-- 应用根logger结束 -->
 	
 	
 	<!-- 应用子级别logger开始 -->
-	<logger name="com.hongtoo.iwork.log" additivity="false" level="debug">
-		<appender-ref ref="SIMPLE_SIFT" />
+	<logger name="org.cheng.meepo" additivity="false" level="debug">
+		<appender-ref ref="STDOUT" />
 	</logger>
 	<!-- 应用子级别logger结束 -->
 	

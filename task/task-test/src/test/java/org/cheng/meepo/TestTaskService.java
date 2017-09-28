@@ -1,5 +1,6 @@
 package org.cheng.meepo;
 
+import org.cheng.meepo.service.TaskTestServiceOne;
 import org.cheng.meepo.task.exception.TaskServiceException;
 import org.cheng.meepo.task.constant.TaskType;
 import org.cheng.meepo.task.dto.ServiceInvokeParam;
@@ -29,7 +30,7 @@ public class TestTaskService {
                 "createBo",
                 new String[]{String.class.getName(), String.class.getName(), Integer.class.getName()},
                 new Object[]{"a", "b", 1}
-        ), TaskType.TIMING, "20160824155000");
+        ), TaskType.TIMING, "20170927145500");
         System.out.println("createBo = " + createBo);
     }
 

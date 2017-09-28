@@ -6,6 +6,7 @@ import org.cheng.meepo.task.constant.TaskConstants;
 import org.cheng.meepo.task.dto.ServiceInvokeParam;
 import org.cheng.meepo.task.scheduler.monitor.CallbackThreadPool;
 import org.cheng.meepo.task.scheduler.monitor.TaskStatusChangeCallback;
+import org.cheng.meepo.task.scheduler.remoting.InvokerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,7 @@ import org.springframework.stereotype.Service;
  * 任务RocketMQ消息发送
  */
 @Service("taskMessageSender")
-public class TaskMessageSender {
+public class TaskMessageSender implements InvokerService {
     private static Logger log = LoggerFactory.getLogger(TaskMessageSender.class);
     //设置任务状态变化回调
     @Autowired
@@ -68,7 +69,8 @@ public class TaskMessageSender {
      * @param taskParams 调用Dubbo服务所需参数
      * @param taskId     任务ID
      */
-    public void sendMsg(ServiceInvokeParam taskParams, final String taskId) {
+    @Override
+    public void doit(ServiceInvokeParam taskParams, final String taskId) {
         try {
             //向MQ中发送消息
             Message message = new Message(TaskConstants.TASK_EXECUTE_MESSAGE_TOPIC,

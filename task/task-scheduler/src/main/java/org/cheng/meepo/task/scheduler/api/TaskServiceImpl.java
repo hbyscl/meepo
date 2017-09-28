@@ -70,7 +70,7 @@ public class TaskServiceImpl implements TaskService {
             switch (taskType) {
                 case REAL:
                     // 即时任务，直接发送消息
-                    taskMessageSender.sendMsg(serviceInvokeParam, taskId);
+                    taskMessageSender.doit(serviceInvokeParam, taskId);
                     break;
                 case TIMING:
                     // 创建定时任务
@@ -158,7 +158,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskContext get(String taskId) throws TaskServiceException {
-        return null;
+        return taskParamStore.get(taskId);
     }
 
     @Override
@@ -179,7 +179,7 @@ public class TaskServiceImpl implements TaskService {
     private TaskDefine getTaskDefine(String scheduleParam) {
         TaskDefine taskDefine = new TaskDefine();
         taskDefine.setTargetBean("taskMessageSender");
-        taskDefine.setTargetMethod("sendMsg");
+        taskDefine.setTargetMethod("doit");
         taskDefine.setParams(scheduleParam);
         return taskDefine;
     }

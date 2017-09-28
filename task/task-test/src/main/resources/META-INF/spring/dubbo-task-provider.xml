@@ -52,9 +52,6 @@
     <!--配置通过读取Dubbo Provider XML配置文件方式发现本地Dubbo服务-->
     <bean id="foundProviderService" class="org.cheng.meepo.task.executor.dubbo.FoundProviderXMLService"/>
 
-    <dubbo:service interface="org.cheng.meepo.service.TaskTestServiceOne" ref="taskTestServiceOneImpl"/>
-    <dubbo:service interface="org.cheng.meepo.service.TaskTestServiceTwo" ref="taskTestServiceTwoImpl"/>
-
-    <dubbo:reference id="taskService" interface="org.cheng.meepo.task.service.TaskService" />
+    <!--<dubbo:reference id="taskService" interface="org.cheng.meepo.task.service.TaskService" />-->
 
 </beans>
