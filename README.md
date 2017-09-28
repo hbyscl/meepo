@@ -83,4 +83,6 @@ task-schedule/test/org.cheng.meepo.task.scheduler.RunSchedule
 - 启动带有task-executor的Dubbo服务
 task-test/test/org.cheng.meepo.RunExecutor
 - 运行JUnit测试用例
-task-test/test/org.cheng.meepo.TestTaskService
+task-test/test/org.cheng.meepo.TestTaskService  
+
+邮件联系：<a href="mailto:2002chengli@163.com">2002chengli@163.com</a>
