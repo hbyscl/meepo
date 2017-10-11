@@ -18,6 +18,11 @@
             <artifactId>spring-boot-starter-freemarker</artifactId>
             <version>1.5.3.RELEASE</version>
         </dependency>
+        <dependency>
+            <groupId>org.cheng</groupId>
+            <artifactId>task-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 
 </project>

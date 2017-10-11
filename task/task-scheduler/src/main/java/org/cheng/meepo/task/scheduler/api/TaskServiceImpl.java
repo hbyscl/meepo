@@ -1,11 +1,11 @@
 package org.cheng.meepo.task.scheduler.api;
 
-import org.cheng.meepo.task.exception.TaskDataException;
-import org.cheng.meepo.task.exception.TaskServiceException;
 import org.cheng.meepo.task.constant.TaskStatus;
 import org.cheng.meepo.task.constant.TaskType;
 import org.cheng.meepo.task.dto.ServiceInvokeParam;
 import org.cheng.meepo.task.dto.TaskContext;
+import org.cheng.meepo.task.exception.TaskDataException;
+import org.cheng.meepo.task.exception.TaskServiceException;
 import org.cheng.meepo.task.scheduler.ScheduleMain;
 import org.cheng.meepo.task.scheduler.exception.TaskOperationException;
 import org.cheng.meepo.task.scheduler.monitor.CallbackThreadPool;
@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -141,7 +142,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<TaskContext> list() throws TaskServiceException {
-        // TODO: 2016/9/12 获取所有任务列表
+        List<TaskContext> list = new ArrayList<>();
         try {
             List<TaskDefine> taskDefines = TaskOperationManager.queryScheduleTask();
             for (TaskDefine taskDefine : taskDefines) {
@@ -149,11 +150,20 @@ public class TaskServiceImpl implements TaskService {
                 String[] strParams = params.split("#");
                 String interfaceName = strParams[0];
                 String taskId = strParams[1];
+                TaskContext taskContext = new TaskContext();
+                taskContext.setId(taskId);
+                taskContext.setTaskType(TaskType.valueOf(taskDefine.getType()));
+                ServiceInvokeParam param = new ServiceInvokeParam(
+                        interfaceName, taskDefine.getTargetMethod(), null, null
+                );
+                taskContext.setServiceInvokeParam(param);
+                taskContext.setScheduleServer(taskDefine.getCurrentServer());
+                list.add(taskContext);
             }
         } catch (TaskOperationException e) {
             e.printStackTrace();
         }
-        return null;
+        return list;
     }
 
     @Override
